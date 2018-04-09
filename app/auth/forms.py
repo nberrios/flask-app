@@ -12,6 +12,7 @@ class LoginForm(FlaskForm):
 
 class UserRegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     verify_password = PasswordField(
         'Verify Password',
@@ -23,3 +24,8 @@ class UserRegistrationForm(FlaskForm):
         user = User.query.filter_by(user_name=username.data).first()
         if user is not None:
             raise ValidationError('That username is already taken.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('That email is already taken.')
