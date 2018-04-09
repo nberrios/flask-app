@@ -1,0 +1,36 @@
+{% extends 'common/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/utils.html" as utils %}
+
+{% block app_content %}
+
+<h1>Hello, {{ current_user.user_name }}!</h1>
+<h3>Below you will find your key/value pairs.</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Key name</th>
+                <th>Value</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key in current_user.keys %}
+            <tr>
+                <td>{{ key.key_name }}</td>
+                <td>{{ key.key_value }}</td>
+                <td>{{ utils.form_button(url_for('keys.delete_key', keyid=key.key_id), utils.icon('remove') + ' Remove') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<div id="add-key-form">
+    <h1>Add Key</h1>
+        <div class="row">
+            <div class="col-md-4">
+                {{ wtf.quick_form(key_form) }}
+            </div>
+        </div>
+</div>
+
+{% endblock %}
