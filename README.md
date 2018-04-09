@@ -1,5 +1,10 @@
 # flask-app
 
+Built off of and inspired from @miguelgrinberg 's Flask Tutorial (https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) which is pretty much the gold standard when it comes to writing these things.
+
+# What it does
+Simple microservice for storing user key/value pairs in a db. TODO: maybe spend a little more time to make it a real REST api.
+
 # Setup:
 
 1. Clone this repo and cd into the root level
